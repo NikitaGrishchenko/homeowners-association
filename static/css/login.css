@@ -1,4 +1,4 @@
-.login {
+.login, .logout {
   background: #333;
   min-height: 100vh;
   display: flex;
@@ -6,6 +6,12 @@
 }
 
 .login-box{
+  background: #fff;
+  padding: 50px 0px;
+  border-radius: 5px;
+}
+
+.logout-box{
   background: #fff;
   padding: 50px 0px;
   border-radius: 5px;
@@ -26,6 +32,11 @@
   color: #fff;
   background-color: #333;
   border-color: #333;
+}
+
+.login-btn:hover{
+  opacity: .9;
+  color: #fff;
 }
 
 .login-error{

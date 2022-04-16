@@ -7,12 +7,13 @@
 
 {% block header %}
   {% include 'include/header.html' %}
-  {% include 'include/navbar.html' %}
 {% endblock header %}
 
 {% block content %}
-{% include 'components/slider.html' %}
-{% include 'components/basic-information.html' %}
+  <div class="index">
+    {% include 'components/slider.html' %}
+    {% include 'components/basic-information.html' %}
+  </div>
 {% endblock content %}
 
 {% block footer %}

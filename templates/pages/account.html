@@ -7,11 +7,19 @@
 
 {% block header %}
   {% include 'include/header.html' %}
-  {% include 'include/navbar.html' %}
 {% endblock header %}
 
 {% block content %}
-  Личный кабинет
+  <section class="account">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          Личный кабинет
+          {{user}}
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock content %}
 
 {% block footer %}

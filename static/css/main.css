@@ -1,4 +1,8 @@
 @import "index.css";
-@import "navbar.css";
 @import "login.css";
 @import "header.css";
+
+
+.account, .index {
+  padding-top: 70px;
+}
