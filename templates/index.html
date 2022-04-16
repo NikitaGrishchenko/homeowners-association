@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% comment %} {% block title %}
 !
 {% endblock title %} {% endcomment %}
 
 {% block header %}
-  !
+  {% include 'header.html' %}
+  {% include 'navbar.html' %}
 {% endblock header %}
 
 {% block content %}
-  ss
-
-
+  content
 {% endblock content %}
 
 {% block footer %}
