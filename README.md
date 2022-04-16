@@ -18,6 +18,20 @@ python manage.py migrate - применить миграции
 pip freeze – вывести установленные модули в консоль
 pip freeze > requirements.txt – сохранить установленные модули в файл
 
+Первый запуск
+python -m venv .venv
+source .venv/Scripts/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 
+Последующие запуски
+source .venv/Scripts/activate
+python manage.py runserver
+
+
+TODO
+() Авторизация
 
 ```
