@@ -1,0 +1,53 @@
+{% extends  'base.html' %}
+{% load  static %}
+{% load  widget_tweaks %}
+
+{% block title %}
+  Авторизация
+{% endblock title %}
+
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <div class="p-5">
+      <h1>Ошибка</h1>
+      <p>Вы уже авторизированы</p>
+    </div>
+  {% else %}
+    <section class="login">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 offset-lg-4 text-center">
+            <div class="login-box">
+              <img class="login-box__logo" src="{% static 'images/logo.svg' %}" alt="logo">
+              <form method="post">
+                {% csrf_token %}
+                <div class="form-box">
+                  {% render_field form.username class="login-input login-input--username form-control" placeholder="E-mail" %}
+                </div>
+                <div class="form-box">
+                  {% render_field form.password class="login-input login-input--password form-control" placeholder="Пароль" %}
+                  <span id="showPassButton" class="show-pass__auth align-self-center">
+                    <i id="showPassIcon" class="show-pass align-self-center mdi mdi-eye-off"></i>
+                  </span>
+                </div>
+                <button class="btn mt-3 login-btn" type="submit">Войти</button>
+              </form>
+              {% if form.errors %}
+                <div class="login-error">
+                  <p class="login-error__text">Вы неверно ввели E-mail или пароль</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <a href="/" class="btn w-auto mt-1 text-white">
+            На главную
+          </a>
+      </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock content %}
