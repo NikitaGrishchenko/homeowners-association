@@ -14,11 +14,11 @@ class ProxyGroup(Group):
 
 
 class Flat(models.Model):
-    number = models.CharField(_("Номер квартиры"), max_length=10, blank=True)
-    floor = models.IntegerField(_("Этаж"), blank=True)
-    total_area = models.FloatField(_("Общая площадь"), blank=True)
-    number_of_residents = models.IntegerField(_("Количество проживающих"), blank=True)
-    availability_of_underground_parking = models.BooleanField(_("Наличее подземного паркинга"), blank=True)
+    number = models.CharField(_("Номер квартиры"), max_length=10)
+    floor = models.IntegerField(_("Этаж"))
+    total_area = models.FloatField(_("Общая площадь"))
+    number_of_residents = models.IntegerField(_("Количество проживающих"))
+    availability_of_underground_parking = models.BooleanField(_("Наличее подземного паркинга"))
 
 
     class Meta:
@@ -46,11 +46,11 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that username already exists."),
         },
     )
-    first_name = models.CharField(_("Имя"), max_length=30, blank=True)
-    last_name = models.CharField(_("Фамилия"), max_length=150, blank=True)
-    patronymic = models.CharField(_("Отчество"), max_length=150, blank=True)
-    email = models.EmailField(_("Электронная почта"), blank=True)
-    phone = models.CharField(_("Номер телефона"), max_length=25, blank=True)
+    first_name = models.CharField(_("Имя"), max_length=30)
+    last_name = models.CharField(_("Фамилия"), max_length=150)
+    patronymic = models.CharField(_("Отчество"), max_length=150)
+    email = models.EmailField(_("Электронная почта"))
+    phone = models.CharField(_("Номер телефона"), max_length=25)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name=_("Квартира"), null=True)
     is_staff = models.BooleanField(
         _("Администратор"),

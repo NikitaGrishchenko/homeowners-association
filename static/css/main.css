@@ -1,6 +1,7 @@
 @import "index.css";
 @import "login.css";
 @import "header.css";
+@import "registration.css";
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -8,8 +9,19 @@ body {
   font-size: 16px;
 }
 
-.account, .index {
+.account, .index, .registration {
   padding-top: 70px;
+}
+
+.main-btn{
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
+}
+
+.main-btn:hover{
+  opacity: .9;
+  color: #fff;
 }
 
 

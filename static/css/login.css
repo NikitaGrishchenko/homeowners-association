@@ -28,17 +28,6 @@
   justify-content: center;
 }
 
-.login-btn{
-  color: #fff;
-  background-color: #333;
-  border-color: #333;
-}
-
-.login-btn:hover{
-  opacity: .9;
-  color: #fff;
-}
-
 .login-error{
   width: 100%;
   margin-top: 15px;
