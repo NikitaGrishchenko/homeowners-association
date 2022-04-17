@@ -18,7 +18,7 @@ class Flat(models.Model):
     floor = models.IntegerField(_("Этаж"))
     total_area = models.FloatField(_("Общая площадь"))
     number_of_residents = models.IntegerField(_("Количество проживающих"))
-    availability_of_underground_parking = models.BooleanField(_("Наличее подземного паркинга"))
+    availability_of_underground_parking = models.BooleanField(_("Наличие подземного паркинга"))
 
 
     class Meta:

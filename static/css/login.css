@@ -1,21 +1,16 @@
-.login, .logout {
+.login, .logout, .thanks {
   background: #333;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
-.login-box{
+.login-box, .thanks-box, .logout-box{
   background: #fff;
   padding: 50px 0px;
   border-radius: 5px;
 }
 
-.logout-box{
-  background: #fff;
-  padding: 50px 0px;
-  border-radius: 5px;
-}
 
 .login-box__logo {
   width: 100px;

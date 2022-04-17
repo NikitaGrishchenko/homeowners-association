@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('floor', models.IntegerField(blank=True, verbose_name='Этаж')),
                 ('total_area', models.FloatField(blank=True, verbose_name='Общая площадь')),
                 ('number_of_residents', models.IntegerField(blank=True, verbose_name='Количество проживающих')),
-                ('availability_of_underground_parking', models.BooleanField(blank=True, verbose_name='Наличее подземного паркинга')),
+                ('availability_of_underground_parking', models.BooleanField(blank=True, verbose_name='Наличие подземного паркинга')),
             ],
             options={
                 'verbose_name': 'Квартира',

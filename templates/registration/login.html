@@ -13,10 +13,22 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <div class="p-5">
-      <h1>Ошибка</h1>
-      <p>Вы уже авторизированы</p>
-    </div>
+    <section class="login">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+            <div >
+              <div class="logout-box">
+                <h4>Вы уже авторизированы</h4>
+                <a href="/" class="btn main-btn mt-3">
+                  На главную
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   {% else %}
     <section class="login">
       <div class="container">
