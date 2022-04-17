@@ -1,6 +1,5 @@
 @import "index.css";
 @import "login.css";
-@import "header.css";
 @import "registration.css";
 
 body {
@@ -24,6 +23,17 @@ body {
   color: #fff;
 }
 
+.footer{
+  background: #333;
+  margin-top: 50px;
+}
+
+.footer-box{
+  height: 110px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
 
 /* Указываем box sizing */
 *,
