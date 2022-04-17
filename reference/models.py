@@ -40,3 +40,22 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class Advertising(models.Model):
+    """
+    Объявление
+    """
+
+    title = models.CharField(max_length=255, verbose_name=_("Заголовок"))
+    date = models.DateTimeField(
+        default=datetime.now, verbose_name=_("Дата публикации")
+    )
+
+    class Meta:
+        verbose_name = _("Объявление")
+        verbose_name_plural = _("Объявления")
+
+    def __str__(self):
+        return self.title

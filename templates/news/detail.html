@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{object.title}}
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+  <section class="news-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="news-detail__header">
+            {{object.title}}
+          </h1>
+        </div>
+        <div class="col-12">
+          <p style="opacity: 0.5;" class="news-detail__date">
+            {{ object.date|date:"d.m.Y" }}
+          </p>
+        </div>
+        <div class="col-10 my-5">
+          {{object.text | safe}}
+        </div>
+        <div class="col-12 mb-4">
+          {% if object.image %}
+            <img src="{{object.image.url}}" alt="" class="news-detail__img img-fluid">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content%}
+
+{% block footer %}
+  {% include 'include/footer.html' %}
+{% endblock footer %}

@@ -8,8 +8,17 @@ body {
   font-size: 16px;
 }
 
-.account, .index, .registration {
+.account, .index, .registration, .news-detail, .news-list {
   padding-top: 70px;
+}
+
+.news-link{
+  text-decoration: none !important;
+  color: #333;
+}
+
+.news-link:hover{
+  opacity: 0.6;
 }
 
 .main-btn{
@@ -33,6 +42,10 @@ body {
   display: flex;
   align-items: center;
   color: #fff;
+}
+
+.bg-dark{
+  background-color: #333 !important;
 }
 
 /* Указываем box sizing */

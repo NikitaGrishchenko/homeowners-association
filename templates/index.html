@@ -11,9 +11,9 @@
 
 {% block content %}
   <div class="index">
-    {% comment %} {% include 'components/gallery.html' %} {% endcomment %}
+    {% basic_information %}
+    {% include 'components/intelligence.html' %}
     {% gallery %}
-    {% include 'components/basic-information.html' %}
   </div>
 {% endblock content %}
 
