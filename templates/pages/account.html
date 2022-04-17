@@ -14,8 +14,43 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          Личный кабинет
-          {{user}}
+          <h1>Личный кабинет</h1>
+        </div>
+        <div class="col-12">
+          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}</p>
+        </div>
+        <div class="col-4">
+          <p>Телефон: {{user.phone}}</p>
+        </div>
+        <div class="col-4">
+          <p>E-mail: {{user.email}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p style="font-size: 20px" class="my-3 font-weight-bold">Информация о квартире</p>
+        </div>
+        <div class="col-2">
+          <p>Номер: {{user.flat.number}}</p>
+        </div>
+        <div class="col-2">
+          <p>Этаж: {{user.flat.floor}}</p>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">
+          <p>Общая площадь: {{user.flat.total_area}} м²</p>
+        </div>
+        <div class="col-4">
+          <p>Количество проживающих: {{user.flat.number_of_residents}} чел.</p>
+        </div>
+        <div class="col-12 mt-3 d-flex">
+          <p class="mr-2">Наличее подземного паркинга:</p>
+          {% if user.flat.availability_of_underground_parking %}
+            <img src="{% static 'images/check.svg' %}" alt="check">
+          {% else %}
+            <img src="{% static 'images/uncheck.svg' %}" alt="uncheck">
+          {% endif %}
         </div>
       </div>
     </div>

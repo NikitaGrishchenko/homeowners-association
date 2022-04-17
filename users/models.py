@@ -50,7 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_("Фамилия"), max_length=150, blank=True)
     patronymic = models.CharField(_("Отчество"), max_length=150, blank=True)
     email = models.EmailField(_("Электронная почта"), blank=True)
-    phone = models.CharField(_("Номер телефона"), max_length=15, blank=True)
+    phone = models.CharField(_("Номер телефона"), max_length=25, blank=True)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name=_("Квартира"), null=True)
     is_staff = models.BooleanField(
         _("Администратор"),

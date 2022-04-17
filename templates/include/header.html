@@ -10,13 +10,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+      <ul class="navbar-nav mr-auto ml-3">
+        {% comment %} <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
-        </li>
+        </li> {% endcomment %}
         {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'users:account'  %}">Личный кабинет</a>
