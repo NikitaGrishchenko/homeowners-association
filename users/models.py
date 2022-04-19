@@ -95,3 +95,21 @@ class User(AbstractBaseUser, PermissionsMixin):
         """Return the short name for the user."""
         return self.first_name
 
+
+class QuestionsFromGuests(models.Model):
+    """
+    Вопросы от гостей сайта
+    """
+    name = models.CharField(_("Имя"), max_length=10)
+    email = models.EmailField(_("Электронная почта"))
+    phone = models.CharField(_("Номер телефона"), max_length=25)
+    text = models.TextField(_("Вопрос"))
+
+
+    class Meta:
+        verbose_name = "Вопрос от гостей сайта"
+        verbose_name_plural = "Вопросы от гостей сайта"
+
+    def __str__(self):
+        return self.email
+

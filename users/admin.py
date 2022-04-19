@@ -3,7 +3,7 @@ from django.contrib.auth.admin import GroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group as BaseGroup
 
-from .models import Flat, ProxyGroup, User
+from .models import Flat, ProxyGroup, QuestionsFromGuests, User
 
 
 @admin.register(User)
@@ -57,6 +57,10 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(QuestionsFromGuests)
+class QuestionsFromGuestsAdmin(admin.ModelAdmin):
     pass
 
 

@@ -1,14 +1,14 @@
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import FormView, TemplateView, UpdateView
 from django.views.generic.detail import DetailView
 
-from .forms import UserRegistrationForm
+from .forms import QuestionsFromGuestsForm, UserRegistrationForm
 
 User = get_user_model()
 
@@ -28,6 +28,25 @@ class AccountVeiw(TemplateView):
         current_user = self.request.user
         context['user'] = User.objects.get(id=current_user.id)
         return context
+
+def questions_form_guests_form(request):
+    if request.method == 'POST':
+        form = QuestionsFromGuestsForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['name'])
+        return HttpResponseRedirect(reverse('users:success'))
+
+# class QuestionsFromGuestsFormView(FormView):
+#     """
+#     Вопрос для гостя сайта
+#     """
+
+#     template_name = "index.html"
+#     form_class = QuestionsFromGuestsForm
+#     success_url = reverse_lazy("users:thanks")
+
+    # success_url = reverse_lazy("users:thanks-sending-form")
+
 
 class RegistrationView(FormView):
     """
@@ -60,3 +79,10 @@ class ThanksView(TemplateView):
     """
 
     template_name = "pages/thanks.html"
+
+class SuccessView(TemplateView):
+    """
+    Страница успешного выполненного действия
+    """
+
+    template_name = "pages/success.html"

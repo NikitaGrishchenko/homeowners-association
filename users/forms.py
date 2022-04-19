@@ -2,7 +2,18 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from .models import QuestionsFromGuests
+
 User = get_user_model()
+
+class QuestionsFromGuestsForm(forms.ModelForm):
+    """
+    Форма для вопросов гостей сайта
+    """
+
+    class Meta:
+        model = QuestionsFromGuests
+        fields = ("name", "email", "phone", "text",)
 
 class UserRegistrationForm(forms.ModelForm):
     """
@@ -33,20 +44,6 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Пароли не совпадают")
         return self.cleaned_data["confirm_password"]
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     for key in self.fields:
-    #         self.fields[key].required = True
-    #     self.fields["agreement"].required = False
-    #     self.fields["education"].required = False
-    #     self.fields["propagation"].required = False
-    #     self.fields["patronymic"].required = False
-    #     self.fields["teacher_first_name"].required = False
-    #     self.fields["teacher_last_name"].required = False
-    #     self.fields["teacher_patronymic"].required = False
-    #     self.fields["teacher_position"].required = False
-    #     self.fields["teacher_number_school"].required = False
-
     class Meta:
         model = User
         fields = (
@@ -57,4 +54,3 @@ class UserRegistrationForm(forms.ModelForm):
             "email",
             "flat",
         )
-        # widgets = {"subject": forms.CheckboxSelectMultiple()}
