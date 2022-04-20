@@ -13,13 +13,30 @@
   <section class="tariff">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-5">
           <h1>
             Действующие тарифы на содержания жилья и коммунальные услуги
           </h1>
         </div>
-        <div class="col-12">
-          {{object_list}}
+        <div class="col-10 offset-1">
+          <table class="table table-dark">
+            <thead>
+              <tr >
+                <th scope="col" style="vertical-align: middle;">#</th>
+                <th scope="col" style="vertical-align: middle;">Наименование услуги</th>
+                <th scope="col" style="vertical-align: middle;">Тариф руб./ед. изм. Размер платы на кв.м, руб</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for object in object_list %}
+                <tr>
+                  <th scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
+                  <td style="vertical-align: middle;">{{object.name}}</td>
+                  <td style="vertical-align: middle;">{{object.value}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
