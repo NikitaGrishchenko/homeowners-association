@@ -61,7 +61,10 @@ class FlatAdmin(admin.ModelAdmin):
 
 @admin.register(QuestionsFromGuests)
 class QuestionsFromGuestsAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "email",
+        "contacted",
+    )
 
 
 admin.site.unregister(BaseGroup)

@@ -100,10 +100,12 @@ class QuestionsFromGuests(models.Model):
     """
     Вопросы от гостей сайта
     """
-    name = models.CharField(_("Имя"), max_length=10)
+    name = models.CharField(_("Имя"), max_length=45)
     email = models.EmailField(_("Электронная почта"))
     phone = models.CharField(_("Номер телефона"), max_length=25)
     text = models.TextField(_("Вопрос"))
+    date_created = models.DateTimeField(_("Дата отправки"), default=timezone.now, blank=True)
+    contacted = models.BooleanField(_("Связались ли с человеком?"), blank=True, default=False)
 
 
     class Meta:

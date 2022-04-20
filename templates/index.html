@@ -14,7 +14,10 @@
     {% basic_information %}
     {% include 'components/intelligence.html' %}
     {% gallery %}
-    {% include 'components/questions-from-guests-form.html'%}
+    {% if not user.is_authenticated %}
+      {% include 'components/questions-from-guests-form.html'%}
+    {% endif %}
+    {% include 'components/contacts.html'%}
   </div>
 {% endblock content %}
 

@@ -1,4 +1,6 @@
 
+import email
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
@@ -9,6 +11,7 @@ from django.views.generic import FormView, TemplateView, UpdateView
 from django.views.generic.detail import DetailView
 
 from .forms import QuestionsFromGuestsForm, UserRegistrationForm
+from .models import QuestionsFromGuests
 
 User = get_user_model()
 
@@ -32,8 +35,16 @@ class AccountVeiw(TemplateView):
 def questions_form_guests_form(request):
     if request.method == 'POST':
         form = QuestionsFromGuestsForm(request.POST)
+        print(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['name'])
+            questions_from_guests = QuestionsFromGuests(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                phone=form.cleaned_data['phone'],
+                text=form.cleaned_data['text'],
+            )
+            print(questions_from_guests)
+            questions_from_guests.save()
         return HttpResponseRedirect(reverse('users:success'))
 
 # class QuestionsFromGuestsFormView(FormView):
