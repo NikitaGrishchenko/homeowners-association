@@ -3,7 +3,7 @@ from django.contrib.auth.admin import GroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group as BaseGroup
 
-from .models import Flat, ProxyGroup, QuestionsFromGuests, User
+from .models import Flat, MeterReadings, ProxyGroup, QuestionsFromGuests, User
 
 
 @admin.register(User)
@@ -64,6 +64,16 @@ class QuestionsFromGuestsAdmin(admin.ModelAdmin):
     list_display = (
         "email",
         "contacted",
+    )
+
+@admin.register(MeterReadings)
+class MeterReadingsAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "hot_water",
+        "cold_water",
+        "electricity",
+        "date",
     )
 
 

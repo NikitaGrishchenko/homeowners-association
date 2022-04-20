@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Отправить показания счетчиков
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="meter-readings">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-5">
+          <h1>
+            Отправить показания счетчиков
+          </h1>
+        </div>
+        <div class="col-12">
+          <form action="{% url 'users:meter-readings-form' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="hot_water">Горячая вода, м³</label>
+                  <input name="hot_water" type="number" class="form-control" id="hot_water" required>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="cold_water">Холодная вода, м³</label>
+                  <input name="cold_water" type="number" class="form-control" id="cold_water" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="electricity">Электричество, кВт*ч</label>
+                  <input name="electricity" type="number" class="form-control" id="electricity" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <input class="btn main-btn mt-3" type="submit" value="Отправить">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block footer %}
+  {% include 'include/footer.html' %}
+{% endblock footer %}

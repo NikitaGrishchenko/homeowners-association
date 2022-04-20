@@ -8,7 +8,7 @@ body {
   font-size: 16px;
 }
 
-.account, .index, .registration, .news-detail, .news-list {
+.account, .index, .registration, .news-detail, .news-list, .meter-readings {
   padding-top: 70px;
 }
 
@@ -46,6 +46,10 @@ body {
 
 .bg-dark{
   background-color: #333 !important;
+}
+
+.meter-readings{
+  min-height: 80vh;
 }
 
 /* Указываем box sizing */

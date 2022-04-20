@@ -16,8 +16,8 @@ def gallery() -> dict:
         "first_image": first_object,
     }
 
-@register.inclusion_tag("components/basic-information.html")
-def basic_information() -> dict:
+@register.inclusion_tag("components/basic-information-last-news.html")
+def basic_information_last_news() -> dict:
     latest_five_advertising = Advertising.objects.all().order_by("-id")[:5]
     latest_five_news = News.objects.all().order_by("-id")[:5]
 

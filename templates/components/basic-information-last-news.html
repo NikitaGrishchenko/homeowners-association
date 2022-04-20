@@ -1,0 +1,32 @@
+<div class="col-4">
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      Объявления
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for ad in ads %}
+        <li style="position: relative; padding-bottom: 30px" class="list-group-item">
+          <p>{{ad.title}}</p>
+          <p style="display: block; position: absolute; bottom: 2px; right: 5px; opacity: 0.3; font-size: 14px">{{ ad.date|date:"d.m.Y" }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="col-4">
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      Новости
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for note in news %}
+        <a href="{% url 'reference:news-detail' pk=note.pk %}" class="news-link">
+          <li style="position: relative; padding-bottom: 30px" class="list-group-item">
+            <p>{{note.title}}</p>
+            <p style="display: block; position: absolute; bottom: 2px; right: 5px; opacity: 0.3; font-size: 14px">{{ note.date|date:"d.m.Y" }}</p>
+          </li>
+        <a/>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

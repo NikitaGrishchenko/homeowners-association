@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="thanks">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 offset-lg-4 text-center">
+          <div class="thanks-box">
+            <p>На сервере произошла ошибка!</p>
+            <a class="btn mt-3 main-btn" href="{% url 'home'%}">На главную</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

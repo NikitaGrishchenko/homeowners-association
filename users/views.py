@@ -10,8 +10,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic import FormView, TemplateView, UpdateView
 from django.views.generic.detail import DetailView
 
-from .forms import QuestionsFromGuestsForm, UserRegistrationForm
-from .models import QuestionsFromGuests
+from .forms import (MeterReadingsForm, QuestionsFromGuestsForm,
+                    UserRegistrationForm)
+from .models import MeterReadings, QuestionsFromGuests
 
 User = get_user_model()
 
@@ -32,10 +33,43 @@ class AccountVeiw(TemplateView):
         context['user'] = User.objects.get(id=current_user.id)
         return context
 
+class MeterReadingsView(TemplateView):
+    """
+    Страница отправки показаний счетчиков
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/')
+        return super(MeterReadingsView, self).dispatch(request, *args, **kwargs)
+
+    template_name = "pages/meter-readings.html"
+
+
+def meter_readings_form(request):
+    """
+    Обработка отправки показаний счетчиков
+    """
+    if request.method == 'POST':
+        form = MeterReadingsForm(request.POST)
+        if form.is_valid():
+            meter_readings = MeterReadings(
+                hot_water=form.cleaned_data['hot_water'],
+                cold_water=form.cleaned_data['cold_water'],
+                electricity= form.cleaned_data['electricity'],
+                user=request.user
+            )
+            meter_readings.save()
+            return HttpResponseRedirect(reverse('users:success'))
+        else:
+            return HttpResponseRedirect(reverse('users:error'))
+
 def questions_form_guests_form(request):
+    """
+    Отправка вопросов пользователей
+    """
     if request.method == 'POST':
         form = QuestionsFromGuestsForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             questions_from_guests = QuestionsFromGuests(
                 name=form.cleaned_data['name'],
@@ -43,20 +77,10 @@ def questions_form_guests_form(request):
                 phone=form.cleaned_data['phone'],
                 text=form.cleaned_data['text'],
             )
-            print(questions_from_guests)
             questions_from_guests.save()
-        return HttpResponseRedirect(reverse('users:success'))
-
-# class QuestionsFromGuestsFormView(FormView):
-#     """
-#     Вопрос для гостя сайта
-#     """
-
-#     template_name = "index.html"
-#     form_class = QuestionsFromGuestsForm
-#     success_url = reverse_lazy("users:thanks")
-
-    # success_url = reverse_lazy("users:thanks-sending-form")
+            return HttpResponseRedirect(reverse('users:success'))
+        else:
+            return HttpResponseRedirect(reverse('users:error'))
 
 
 class RegistrationView(FormView):
@@ -89,11 +113,19 @@ class ThanksView(TemplateView):
     Страница благодарности
     """
 
-    template_name = "pages/thanks.html"
+    template_name = "notice/thanks.html"
 
 class SuccessView(TemplateView):
     """
     Страница успешного выполненного действия
     """
 
-    template_name = "pages/success.html"
+    template_name = "notice/success.html"
+
+class ErrorView(TemplateView):
+    """
+    Страница ошибки
+    """
+
+    template_name = "notice/error.html"
+

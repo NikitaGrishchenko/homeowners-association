@@ -80,6 +80,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = _("Пользователь")
         verbose_name_plural = _("Пользователи")
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.flat.number} квартира)"
+
     def clean(self):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
@@ -115,3 +118,21 @@ class QuestionsFromGuests(models.Model):
     def __str__(self):
         return self.email
 
+
+
+class MeterReadings(models.Model):
+    """
+    Показания счетчиков
+    """
+    hot_water = models.IntegerField(_("Горячая вода, м³"))
+    cold_water = models.IntegerField(_("Холодная вода, м³"))
+    electricity = models.IntegerField(_("Электричество, кВт*ч"))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("Пользователь"))
+    date = models.DateTimeField(_("Дата отправки"), default=timezone.now, blank=True)
+
+    class Meta:
+        verbose_name = "Показания счетчиков"
+        verbose_name_plural = "Показания счетчиков"
+
+    def __str__(self):
+        return f"{self.user}-{self.date}"
