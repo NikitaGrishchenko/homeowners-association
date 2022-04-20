@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Новости
+  Опросы
 {% endblock title %}
 
 {% block header %}
@@ -10,21 +10,18 @@
 {% endblock header %}
 
 {% block content %}
-  <section class="news-list">
+  <section class="survey-list">
     <div class="container">
       <div class="row">
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-4">
           <h1>
-            Новости
+            Опросы
           </h1>
         </div>
         {% for item in object_list %}
           <div class="col-4 mb-4">
-            <a class="news-link" href="{% url 'reference:news-detail' pk=item.pk %}">
+            <a class="survey-link" href="{% url 'survey:detail' pk=item.pk %}">
               <div class="card h-100">
-                {% if item.image %}
-                  <img src="{{item.image.url}}" alt="image" class="img-fluid">
-                {% endif %}
                 <div style="position: relative;" class="card-body">
                   <h5 class="card-title">{{item.title}}</h5>
                   <p style="display: block; position: absolute; bottom: 2px; right: 5px; opacity: 0.3; font-size: 14px">{{ item.date|date:"d.m.Y" }}</p>

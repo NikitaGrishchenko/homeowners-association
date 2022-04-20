@@ -4,7 +4,7 @@
 
 ```
 django-admin startproject homeowners - создание проекта
-python manage.py startapp users - создание приложение "пользователи"
+python manage.py startapp survey - создание приложение "пользователи"
 
 python -m venv .venv – создание виртуального окружения Windows
 source .venv/Scripts/activate – активация виртуального окружения Windows
@@ -47,6 +47,8 @@ TODO
 () опросы
 () заявка на вызов мастера
 () list объявления
-() страница тарифы
+(+) страница тарифы
 (+) починить requirements.txt
+() группы пользователей
+() выгрузка показаний и опроса
 ```

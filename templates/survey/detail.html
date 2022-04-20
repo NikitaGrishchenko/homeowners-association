@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{object.title}}
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="survey-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <h1>
+            {{object.title}}
+          </h1>
+          <p>
+            {{ object.date|date:"d.m.Y" }}
+          </p>
+        </div>
+        <div class="col-12">
+          <form action="">
+            {{object}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content%}
+
+{% block footer %}
+  {% include 'include/footer.html' %}
+{% endblock footer %}

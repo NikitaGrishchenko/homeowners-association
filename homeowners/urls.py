@@ -25,6 +25,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('user/', include('users.urls'), name="users"),
     path('reference/', include('reference.urls'), name="reference"),
+    path('survey/', include('survey.urls'), name="survey"),
     path("", views.HomeView.as_view(), name="home"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,9 +7,16 @@
         <div class="row">
           {% basic_information_last_news %}
           <div class="col-4">
-            {% if user.is_authenticated %}
-              <button onclick="location.href='{% url 'users:meter-readings-page' %}'" type="button" class="btn main-btn">Отправить показания счетчиков</button>
+            <div>
+              {% if user.is_authenticated %}
+                <button onclick="location.href='{% url 'users:meter-readings-page' %}'" type="button" class="btn main-btn">Отправить показания счетчиков</button>
             {% endif %}
+            </div>
+            <div>
+              {% if user.is_authenticated %}
+                <button onclick="location.href='{% url 'survey:list' %}'" type="button" class="btn main-btn">Опросы</button>
+            {% endif %}
+            </div>
           </div>
         </div>
       </div>

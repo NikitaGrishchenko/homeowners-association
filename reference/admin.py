@@ -6,16 +6,28 @@ from .models import Advertising, Gallery, News, Tariff
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "title",
+        "date",
+    )
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "title",
+        "image",
+    )
 
 @admin.register(Advertising)
 class AdvertisingAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "title",
+        "date",
+    )
 
 @admin.register(Tariff)
 class TariffAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "name",
+        "value",
+    )

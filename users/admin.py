@@ -57,13 +57,22 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "number",
+        "floor",
+        "total_area",
+        "number_of_residents",
+        "availability_of_underground_parking",
+    )
 
 @admin.register(QuestionsFromGuests)
 class QuestionsFromGuestsAdmin(admin.ModelAdmin):
     list_display = (
+        "name",
         "email",
+        "phone",
         "contacted",
+        "date_created",
     )
 
 @admin.register(MeterReadings)
