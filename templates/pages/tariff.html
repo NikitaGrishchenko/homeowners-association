@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Действующие тарифы на содержания жилья и коммунальные услуги
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="tariff">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>
+            Действующие тарифы на содержания жилья и коммунальные услуги
+          </h1>
+        </div>
+        <div class="col-12">
+          {{object_list}}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block footer %}
+  {% include 'include/footer.html' %}
+{% endblock footer %}

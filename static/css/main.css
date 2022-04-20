@@ -8,7 +8,7 @@ body {
   font-size: 16px;
 }
 
-.account, .index, .registration, .news-detail, .news-list, .meter-readings {
+.account, .index, .registration, .news-detail, .news-list, .meter-readings, .tariff {
   padding-top: 70px;
 }
 

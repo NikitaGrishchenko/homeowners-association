@@ -42,7 +42,6 @@ class Gallery(models.Model):
         return self.title
 
 
-
 class Advertising(models.Model):
     """
     Объявление
@@ -59,3 +58,22 @@ class Advertising(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Tariff(models.Model):
+    """
+    Тарифы
+    """
+
+    name = models.CharField(max_length=255, verbose_name=_("Наименование услуги"))
+    value = models.CharField(max_length=255, verbose_name=_("Значение"))
+
+    class Meta:
+        verbose_name = _("Тариф")
+        verbose_name_plural = _("Тарифы")
+
+    def __str__(self):
+        return self.name
+
+
+

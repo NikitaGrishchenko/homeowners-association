@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Advertising, Gallery, News
+from .models import Advertising, Gallery, News, Tariff
 
 # Register your models here.
 
@@ -14,4 +14,8 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Advertising)
 class AdvertisingAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Tariff)
+class TariffAdmin(admin.ModelAdmin):
     pass

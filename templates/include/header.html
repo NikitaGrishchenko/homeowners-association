@@ -17,6 +17,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'reference:news-list'  %}">Новости</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reference:tariff'  %}">Тарифы</a>
+        </li>
         {% if not user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'users:registration' %}">Регистрация</a>

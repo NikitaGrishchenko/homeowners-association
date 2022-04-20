@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .models import Gallery, News
+from .models import News, Tariff
 
 
 class NewsDetailView(DetailView):
@@ -18,3 +18,8 @@ class NewsListView(ListView):
         context = super().get_context_data(**kwargs)
         context['object_list'] = News.objects.all().order_by('-id')
         return context
+
+class TariffListView(ListView):
+    model = Tariff
+    template_name = "pages/tariff.html"
+
