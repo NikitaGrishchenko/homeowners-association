@@ -17,6 +17,11 @@
                 <button onclick="location.href='{% url 'survey:list' %}'" type="button" class="btn main-btn">Опросы</button>
             {% endif %}
             </div>
+            <div>
+              {% if user.is_authenticated %}
+                <button onclick="location.href='{% url 'users:calling-wizard' %}'" type="button" class="btn main-btn">Вызвать мастера</button>
+            {% endif %}
+            </div>
           </div>
         </div>
       </div>

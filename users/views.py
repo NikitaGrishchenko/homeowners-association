@@ -10,8 +10,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import FormView, TemplateView, UpdateView
 from django.views.generic.detail import DetailView
 
-from .forms import (MeterReadingsForm, QuestionsFromGuestsForm,
-                    UserRegistrationForm)
+from .forms import (CallingWizardForm, MeterReadingsForm,
+                    QuestionsFromGuestsForm, UserRegistrationForm)
 from .models import MeterReadings, QuestionsFromGuests
 
 User = get_user_model()
@@ -81,6 +81,28 @@ def questions_form_guests_form(request):
             return HttpResponseRedirect(reverse('users:success'))
         else:
             return HttpResponseRedirect(reverse('users:error'))
+
+
+class CallingWizardView(FormView):
+    """
+    Вызов мастера
+    """
+
+    template_name = "pages/calling-wizard.html"
+    form_class = CallingWizardForm
+    success_url = reverse_lazy("users:success")
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/')
+        return super(CallingWizardView, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        calling = form.save(commit=False)
+        calling.user = self.request.user
+        calling.save()
+        # form.save_m2m()
+        return super().form_valid(form)
 
 
 class RegistrationView(FormView):

@@ -8,7 +8,7 @@ body {
   font-size: 16px;
 }
 
-.account, .index, .registration, .news-detail, .news-list, .meter-readings, .tariff, .survey-list, .survey-detail {
+.account, .index, .registration, .news-detail, .news-list, .meter-readings, .tariff, .survey-list, .survey-detail, .calling-wizard {
   padding-top: 70px;
 }
 

@@ -3,7 +3,8 @@ from django.contrib.auth.admin import GroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group as BaseGroup
 
-from .models import Flat, MeterReadings, ProxyGroup, QuestionsFromGuests, User
+from .models import (CallingWizard, Flat, MeterReadings, ProxyGroup,
+                     QuestionsFromGuests, User)
 
 
 @admin.register(User)
@@ -83,6 +84,17 @@ class MeterReadingsAdmin(admin.ModelAdmin):
         "cold_water",
         "electricity",
         "date",
+    )
+
+
+@admin.register(CallingWizard)
+class CallingWizardAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "master",
+        "text",
+        "date",
+        "reaction",
     )
 
 

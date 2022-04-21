@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import Group, PermissionsMixin, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
@@ -124,9 +125,9 @@ class MeterReadings(models.Model):
     """
     Показания счетчиков
     """
-    hot_water = models.IntegerField(_("Горячая вода, м³"))
-    cold_water = models.IntegerField(_("Холодная вода, м³"))
-    electricity = models.IntegerField(_("Электричество, кВт*ч"))
+    hot_water = models.FloatField(_("Горячая вода, м³"))
+    cold_water = models.FloatField(_("Холодная вода, м³"))
+    electricity = models.FloatField(_("Электричество, кВт*ч"))
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("Пользователь"))
     date = models.DateTimeField(_("Дата отправки"), default=timezone.now, blank=True)
 
@@ -136,3 +137,31 @@ class MeterReadings(models.Model):
 
     def __str__(self):
         return f"{self.user}-{self.date}"
+
+
+class CallingWizard(models.Model):
+    """
+    Вызов мастера
+    """
+    MASTERS = (
+        ('1', 'Сантехник'),
+        ('2', 'Электрик'),
+        ('3', 'Газовик'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("Пользователь"), blank=True)
+    master = models.CharField(_("Мастер"),max_length=25, choices = MASTERS)
+    text = models.TextField(_("Причина вызова"))
+    image = models.ImageField(null=True, blank=False, verbose_name=_("Фото"))
+    date = models.DateTimeField(_("Дата отправки"), default=timezone.now, blank=True)
+    reaction = models.BooleanField(_("Пользователь получил ответ на свою заявку?"), default=False, blank=True)
+
+    class Meta:
+        verbose_name = "Вызов мастера"
+        verbose_name_plural = "Вызов мастера"
+
+
+    def __str__(self):
+        return f"{self.user}"
+
+
+

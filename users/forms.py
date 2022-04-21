@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from .models import MeterReadings, QuestionsFromGuests
+from .models import CallingWizard, MeterReadings, QuestionsFromGuests
 
 User = get_user_model()
 
@@ -23,6 +23,16 @@ class QuestionsFromGuestsForm(forms.ModelForm):
     class Meta:
         model = QuestionsFromGuests
         fields = ("name", "email", "phone", "text",)
+
+class CallingWizardForm(forms.ModelForm):
+    """
+    Форма вызова мастера
+    """
+
+    class Meta:
+        model = CallingWizard
+        fields = ("master", "image", "text",)
+        widgets = {"subject": forms.SelectDateWidget()}
 
 class UserRegistrationForm(forms.ModelForm):
     """
