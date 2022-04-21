@@ -11,6 +11,10 @@ class QuestionForSurveyInline(admin.TabularInline):
 @admin.register(Survey)
 class SurveyAdmin(admin.ModelAdmin):
     inlines = [QuestionForSurveyInline]
+    list_display = (
+        "title",
+        "date",
+    )
 
 class UserQuestionForSurveyInline(admin.TabularInline):
     model = UserQuestionForSurvey
@@ -18,5 +22,9 @@ class UserQuestionForSurveyInline(admin.TabularInline):
 @admin.register(UserSurvey)
 class UserSurveyAdmin(admin.ModelAdmin):
     inlines = [UserQuestionForSurveyInline]
-
+    list_display = (
+        "survey",
+        "user",
+        "passed",
+    )
 

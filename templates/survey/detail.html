@@ -10,26 +10,62 @@
 {% endblock header %}
 
 {% block content %}
-  <section class="survey-detail">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 mb-3">
-          <h1>
-            {{survey.title}}
-          </h1>
-          <p>
-            {{ survey.date|date:"d.m.Y" }}
-          </p>
-        </div>
-        <div class="col-12">
-          <form action="">
-            {{questions}}
-
-          </form>
+  {% if user_survey|length == 1 %}
+    <section style="min-height: 80vh;" class="survey-detail">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>
+              Вы уже оставили свой голос!
+            </h2>
+            <a class="btn mt-3 main-btn" href="{% url 'home'%}">На главную</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {% elif user_survey|length == 0 %}
+    <section class="survey-detail">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-5 mt-3">
+            <h1>
+              {{survey.title}}
+            </h1>
+            <p class="mt-3">
+              {{ survey.date|date:"d.m.Y" }}
+            </p>
+          </div>
+          <div class="col-12">
+            <form action="{% url 'survey:users-response-to-survey' pk=survey.pk %}" method="POST">
+              <div class="row">
+                {% for question in questions %}
+                  <div class="col-12 ">
+                    <div style="border-bottom: 1px solid #E5E5E5" class="row align-items-center py-4">
+                      <div class="col-6">
+                        <p>{{question.title}}</p>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <select class="form-control" id="{{question.id}}" name="{{question.id}}">
+                            <option value="AGREE">За</option>
+                            <option value="AGAINST">Против</option>
+                            <option value="HOLD">Воздержался</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <div class="col-12 mt-5">
+                  <input class="btn main-btn" type="submit" value="Отправить">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
 {% endblock content%}
 
 {% block footer %}

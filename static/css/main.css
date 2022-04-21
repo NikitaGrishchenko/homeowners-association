@@ -12,13 +12,13 @@ body {
   padding-top: 70px;
 }
 
-.news-link{
+.news-link, .survey-link{
   text-decoration: none !important;
   color: #333;
 }
 
-.news-link:hover{
-  opacity: 0.6;
+.news-link:hover, .survey-link:hover{
+  color: rgb(157, 157, 157);
 }
 
 .main-btn{
