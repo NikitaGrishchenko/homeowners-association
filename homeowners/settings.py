@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+USE_L10N=False
 ROOT_URLCONF = 'homeowners.urls'
 
 TEMPLATES = [

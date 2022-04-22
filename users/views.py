@@ -1,13 +1,10 @@
 
-import email
 
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic import FormView, TemplateView, UpdateView
+from django.views.generic import FormView, TemplateView
 from django.views.generic.detail import DetailView
 
 from .forms import (CallingWizardForm, MeterReadingsForm,
@@ -43,6 +40,14 @@ class MeterReadingsView(TemplateView):
         if not request.user.is_authenticated:
             return redirect('/')
         return super(MeterReadingsView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        payments = MeterReadings.objects.filter(user=user)
+        last_payment = payments.latest('id')
+        context['last_payment'] = last_payment
+        return context
 
     template_name = "pages/meter-readings.html"
 
