@@ -11,7 +11,8 @@ from django.views.generic import FormView, TemplateView, UpdateView
 from django.views.generic.detail import DetailView
 
 from .forms import (CallingWizardForm, MeterReadingsForm,
-                    QuestionsFromGuestsForm, UserRegistrationForm)
+                    QuestionsFromGuestsForm, QuestionsUserForm,
+                    UserRegistrationForm)
 from .models import MeterReadings, QuestionsFromGuests
 
 User = get_user_model()
@@ -102,6 +103,27 @@ class CallingWizardView(FormView):
         calling.user = self.request.user
         calling.save()
         # form.save_m2m()
+        return super().form_valid(form)
+
+
+class QuestionsUserView(FormView):
+    """
+    Обращение пользователя
+    """
+
+    template_name = "pages/questions-user.html"
+    form_class = QuestionsUserForm
+    success_url = reverse_lazy("users:success")
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/')
+        return super(QuestionsUserView, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        calling = form.save(commit=False)
+        calling.user = self.request.user
+        calling.save()
         return super().form_valid(form)
 
 

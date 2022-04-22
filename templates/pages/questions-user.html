@@ -10,11 +10,11 @@
 {% endblock header %}
 
 {% block content %}
-<section style="min-height: 85vh" class="calling-wizard">
+<section class="calling-user">
   <div class="container">
     <div class="row">
       <div class="col-12 my-3">
-        <h1>Вызов мастера</h1>
+        <h1>Задать вопрос</h1>
       </div>
       <div class="col-12">
         <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column">
@@ -22,13 +22,13 @@
           <div class="form-items">
             <div class="row d-flex align-items-center">
               <div class="col-lg-3">
-                {{ form.master.label }}
+                {{ form.to_whom.label }}
               </div>
               <div class="col-lg-6">
-                {% render_field form.master class="form-control" placeholder="Выберите мастера"%}
+                {% render_field form.to_whom class="form-control"%}
               </div>
               <div class="col-lg-3 register-error">
-                {{ form.master.errors}}
+                {{ form.to_whom.errors}}
               </div>
             </div>
           </div>
@@ -40,25 +40,10 @@
                 {{ form.text.label }}
               </div>
               <div class="col-lg-6">
-                {% render_field form.text class="form-control" placeholder="Опишите проблему"%}
+                {% render_field form.text class="form-control" %}
               </div>
               <div class="col-lg-3 register-error">
                 {{ form.text.errors}}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="form-items">
-            <div class="row d-flex align-items-center">
-              <div class="col-lg-3">
-                {{ form.image.label }}
-              </div>
-              <div class="col-lg-4">
-                {% render_field form.image class="form-control" placeholder="Фотография"%}
-              </div>
-              <div class="col-lg-3 register-error">
-                {{ form.image.errors}}
               </div>
             </div>
           </div>

@@ -30,6 +30,12 @@ class Flat(models.Model):
         return f"Квартира {self.number}, Этаж {self.floor}"
 
 
+ROLES = (
+    ('1', 'Администратор'),
+    ('3', 'Председатель'),
+    ('3', 'Бухгалтер'),
+)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
@@ -53,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("Электронная почта"))
     phone = models.CharField(_("Номер телефона"), max_length=25)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name=_("Квартира"), null=True)
+    role = models.CharField(_("Роль"),max_length=25, choices = ROLES, blank=True, null=True)
     is_staff = models.BooleanField(
         _("Администратор"),
         default=False,
@@ -158,6 +165,26 @@ class CallingWizard(models.Model):
     class Meta:
         verbose_name = "Вызов мастера"
         verbose_name_plural = "Вызов мастера"
+
+
+    def __str__(self):
+        return f"{self.user}"
+
+
+class QuestionsUser(models.Model):
+    """
+    Вопросы пользователя
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("Пользователь"), blank=True)
+    to_whom = models.CharField(_("Кому вопрос?"),max_length=25, choices = ROLES)
+    text = models.TextField(_("Текст вопроса"))
+    date = models.DateTimeField(_("Дата отправки"), default=timezone.now, blank=True)
+    reaction = models.BooleanField(_("Пользователь получил ответ на свой вопрос?"), default=False, blank=True)
+
+    class Meta:
+        verbose_name = "Вопрос пользователя"
+        verbose_name_plural = "Вопросы пользователя"
 
 
     def __str__(self):

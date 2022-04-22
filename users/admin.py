@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group as BaseGroup
 
 from .models import (CallingWizard, Flat, MeterReadings, ProxyGroup,
-                     QuestionsFromGuests, User)
+                     QuestionsFromGuests, User, QuestionsUser)
 
 
 @admin.register(User)
@@ -17,6 +17,7 @@ class UserAdmin(BaseUserAdmin):
         "patronymic",
         "phone",
         "flat",
+        "role",
         "is_staff",
     )
     list_readonly_not_superuser_fields = (
@@ -37,6 +38,8 @@ class UserAdmin(BaseUserAdmin):
                     "email",
                     "phone",
                     "flat",
+                    "role",
+
                 )
             },
         ),
@@ -92,6 +95,17 @@ class CallingWizardAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "master",
+        "text",
+        "date",
+        "reaction",
+    )
+
+
+@admin.register(QuestionsUser)
+class QuestionsUserAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "to_whom",
         "text",
         "date",
         "reaction",
