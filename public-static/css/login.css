@@ -1,0 +1,33 @@
+.login, .logout, .thanks {
+  background: #333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.login-box, .thanks-box, .logout-box{
+  background: #fff;
+  padding: 50px 0px;
+  border-radius: 5px;
+}
+
+
+.login-box__logo {
+  width: 100px;
+  margin-bottom: 25px;
+}
+
+.form-box{
+  margin: 10px ;
+  display: flex;
+  justify-content: center;
+}
+
+.login-error{
+  width: 100%;
+  margin-top: 15px;
+}
+
+.login-error__text{
+  color: red;
+}

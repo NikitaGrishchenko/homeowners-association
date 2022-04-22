@@ -1,0 +1,8 @@
+{% extends 'admin/change_list.html' %}
+{% block object-tools %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <a style="border: 1px solid green; padding: 10px; margin-bottom: 20px" href="/survey/export/" type="submit">Скачать ответы пользователей</a>
+  </form>
+  {{ block.super }}
+{% endblock %}

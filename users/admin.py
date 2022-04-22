@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import GroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group as BaseGroup
+from import_export import fields, resources
+from import_export.admin import ImportExportActionModelAdmin
 
 from .models import (CallingWizard, Flat, MeterReadings, ProxyGroup,
-                     QuestionsFromGuests, User, QuestionsUser)
+                     QuestionsFromGuests, QuestionsUser, User)
 
 
 @admin.register(User)
@@ -17,7 +19,6 @@ class UserAdmin(BaseUserAdmin):
         "patronymic",
         "phone",
         "flat",
-        "role",
         "is_staff",
     )
     list_readonly_not_superuser_fields = (
@@ -79,8 +80,45 @@ class QuestionsFromGuestsAdmin(admin.ModelAdmin):
         "date_created",
     )
 
+
+class MeterReadingsResource(resources.ModelResource):
+
+    user = fields.Field(
+        attribute="user",
+        column_name="Пользователь",
+    )
+    cold_water = fields.Field(
+        attribute="cold_water",
+        column_name="Холодная вода",
+    )
+    electricity = fields.Field(
+        attribute="electricity",
+        column_name="Электроэнергия",
+    )
+    hot_water = fields.Field(
+        attribute="hot_water",
+        column_name="Горячая вода",
+    )
+    date = fields.Field(
+        attribute="date",
+        column_name="Дата отправка",
+    )
+
+    class Meta:
+        model = MeterReadings
+        import_id_fields = ("id",)
+        fields = [
+            "user",
+            "hot_water",
+            "cold_water",
+            "electricity",
+            "date",
+
+        ]
+        export_order = fields
+
 @admin.register(MeterReadings)
-class MeterReadingsAdmin(admin.ModelAdmin):
+class MeterReadingsAdmin(ImportExportActionModelAdmin):
     list_display = (
         "user",
         "hot_water",
@@ -88,6 +126,7 @@ class MeterReadingsAdmin(admin.ModelAdmin):
         "electricity",
         "date",
     )
+    resource_class = MeterReadingsResource
 
 
 @admin.register(CallingWizard)
@@ -110,7 +149,11 @@ class QuestionsUserAdmin(admin.ModelAdmin):
         "date",
         "reaction",
     )
+    list_filter=('to_whom',)
 
 
 admin.site.unregister(BaseGroup)
 admin.site.register(ProxyGroup, GroupAdmin)
+
+
+

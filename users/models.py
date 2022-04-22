@@ -58,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     patronymic = models.CharField(_("Отчество"), max_length=150)
     email = models.EmailField(_("Электронная почта"))
     phone = models.CharField(_("Номер телефона"), max_length=25)
-    flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name=_("Квартира"), null=True)
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name=_("Квартира"), null=True, blank=True)
     role = models.CharField(_("Роль"),max_length=25, choices = ROLES, blank=True, null=True)
     is_staff = models.BooleanField(
         _("Администратор"),
@@ -89,7 +89,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Пользователи")
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.flat.number} квартира)"
+        return f"{self.first_name} {self.last_name}"
 
     def clean(self):
         super().clean()

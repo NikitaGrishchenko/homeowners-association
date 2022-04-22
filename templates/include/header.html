@@ -20,6 +20,17 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'reference:tariff'  %}">Тарифы</a>
         </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#gallery">Фотогалерея</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#contacts">Контакты</a>
+          </li>
+        {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#questions-from-guests-form">Задать вопрос</a>
+          </li>
+        {% endif %}
         {% if not user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'users:registration' %}">Регистрация</a>
@@ -34,7 +45,7 @@
       <span class="navbar-text">
         {% if user.is_authenticated %}
           <a href="{% url 'users:account'  %}" class="mr-3">
-            {{request.user.username}}
+            {{request.user.first_name}} {{request.user.last_name}}
           </a>
           <button onclick="location.href='{% url 'logout' %}'" type="button" class="btn btn-outline-dark">Выйти</button>
         {% else %}

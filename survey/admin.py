@@ -7,6 +7,8 @@ from .models import (QuestionForSurvey, Survey, UserQuestionForSurvey,
 
 class QuestionForSurveyInline(admin.TabularInline):
     model = QuestionForSurvey
+    extra = 0
+
 
 @admin.register(Survey)
 class SurveyAdmin(admin.ModelAdmin):
@@ -18,6 +20,8 @@ class SurveyAdmin(admin.ModelAdmin):
 
 class UserQuestionForSurveyInline(admin.TabularInline):
     model = UserQuestionForSurvey
+    extra = 0
+
 
 @admin.register(UserSurvey)
 class UserSurveyAdmin(admin.ModelAdmin):
