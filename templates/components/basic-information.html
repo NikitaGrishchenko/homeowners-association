@@ -5,22 +5,25 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          {% basic_information_last_news %}
-          {% if user.is_authenticated %}
-          <div class="col-4">
-            <div class="btn-group-vertical" role="group" aria-label="Basic example">
+
+          <div class="col-12 col-lg-4 mb-4">
+            {% if user.is_authenticated %}
+            <div class="btn-group-vertical" role="group" aria-label="Basic example" style="width: 100%">
               <button onclick="location.href='{% url 'users:meter-readings-page' %}'" type="button" class="btn main-btn">Отправить показания счетчиков</button>
               <button onclick="location.href='{% url 'survey:list' %}'" type="button" class="btn main-btn">Опросы</button>
               <button onclick="location.href='{% url 'users:calling-wizard' %}'" type="button" class="btn main-btn">Вызвать мастера</button>
               <button onclick="location.href='{% url 'users:questions-user' %}'" type="button" class="btn main-btn">Задать вопрос</button>
             </div>
           {% elif not user.is_authenticated %}
-              <div class="btn-group-vertical" role="group" aria-label="Basic example">
+              <div class="btn-group-vertical" role="group" aria-label="Basic example" style="width: 100%">
                 <button onclick="location.href='{% url 'users:registration' %}'" type="button" class="btn main-btn w-100">Регистрация</button>
                 <button onclick="location.href='{% url 'users:registration' %}'" type="button" class="btn main-btn w-100">Узнать текущие тарифы</button>
               </div>
+              {% endif %}
             </div>
-          {% endif %}
+
+            {% basic_information_last_news %}
+
         </div>
       </div>
     </div>

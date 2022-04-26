@@ -44,9 +44,21 @@ class MeterReadingsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        payments = MeterReadings.objects.filter(user=user)
-        last_payment = payments.latest('id')
-        context['last_payment'] = last_payment
+        electricity = 0
+        hot_water = 0
+        cold_water = 0
+        try:
+            payments = MeterReadings.objects.filter(user=user)
+            last_payment = payments.latest('id')
+            electricity = last_payment.electricity
+            hot_water = last_payment.hot_water
+            cold_water = last_payment.cold_water
+        except MeterReadings.DoesNotExist:
+            pass
+
+        context['electricity'] = electricity
+        context['hot_water'] = hot_water
+        context['cold_water'] = cold_water
         return context
 
     template_name = "pages/meter-readings.html"

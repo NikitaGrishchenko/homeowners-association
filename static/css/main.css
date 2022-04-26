@@ -9,7 +9,7 @@ body {
 }
 
 .account, .index, .registration, .news-detail, .news-list, .meter-readings, .tariff, .survey-list, .survey-detail, .calling-wizard, .calling-user {
-  padding-top: 70px;
+  padding-top: 100px;
 }
 
 .news-link, .survey-link{

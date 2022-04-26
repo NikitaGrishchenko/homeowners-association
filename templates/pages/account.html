@@ -19,10 +19,10 @@
         <div class="col-12">
           <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-lg-4">
           <p>Телефон: {{user.phone}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-lg-4">
           <p>E-mail: {{user.email}}</p>
         </div>
       </div>
@@ -30,18 +30,18 @@
         <div class="col-12">
           <p style="font-size: 20px" class="my-3 font-weight-bold">Информация о квартире</p>
         </div>
-        <div class="col-2">
+        <div class="col-12 col-lg-2">
           <p>Номер: {{user.flat.number}}</p>
         </div>
-        <div class="col-2">
+        <div class="col-12 col-lg-2">
           <p>Этаж: {{user.flat.floor}}</p>
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <p>Общая площадь: {{user.flat.total_area}} м²</p>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-lg-3">
           <p>Количество проживающих: {{user.flat.number_of_residents}} чел.</p>
         </div>
         <div class="col-12 mt-3 d-flex">
@@ -55,7 +55,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-12">
-          <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+          <div class="btn-group-vertical btn-group-lg" role="group" aria-label="Basic example">
             <button onclick="location.href='{% url 'users:meter-readings-page' %}'" type="button" class="btn main-btn">Отправить показания счетчиков</button>
             <button onclick="location.href='{% url 'survey:list' %}'" type="button" class="btn main-btn">Опросы</button>
             <button onclick="location.href='{% url 'users:calling-wizard' %}'" type="button" class="btn main-btn">Вызвать мастера</button>
