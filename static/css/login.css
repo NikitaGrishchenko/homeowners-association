@@ -1,6 +1,6 @@
 .login, .logout, .thanks {
   background: #333;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
 }

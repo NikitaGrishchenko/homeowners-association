@@ -77,3 +77,17 @@ class Tariff(models.Model):
 
 
 
+class Document(models.Model):
+    """
+    Документ
+    """
+
+    title = models.CharField(max_length=255, verbose_name=_("Название"))
+    file = models.FileField(_("Документ"), upload_to='our_projects/', max_length=100)
+
+    class Meta:
+        verbose_name = _("Документ")
+        verbose_name_plural = _("Документ")
+
+    def __str__(self):
+        return self.title
